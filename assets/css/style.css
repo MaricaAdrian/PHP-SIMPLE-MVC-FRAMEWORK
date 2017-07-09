@@ -1,0 +1,366 @@
+/*
+HTML 5 Template Name: Basic 77
+File: Layout CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
+
+body{margin:0; padding:0; font-size:13px; font-family:Georgia, "Times New Roman", Times, serif; color:#979797; background-color:#FFFFFF;}
+
+.clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
+.clear{display:block; clear:both;}
+html[xmlns] .clear{display:block;}
+* html .clear{height:1%;}
+
+a{outline:none; text-decoration:none;}
+
+code{font-weight:normal; font-style:normal; font-family:Georgia, "Times New Roman", Times, serif;}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+img{margin:0; padding:0; border:none; line-height:normal; vertical-align:middle;}
+.imgholder, .imgl, .imgr{padding:4px; border:1px solid #D6D6D6; text-align:center;}
+.imgl{float:left; margin:0 15px 15px 0; clear:left;}
+.imgr{float:right; margin:0 0 15px 15px; clear:right;}
+
+/*----------------------------------------------HTML 5 Overrides-------------------------------------*/
+
+address, article, aside, figcaption, figure, footer, header, nav, section{display:block; margin:0; padding:0;}
+
+q{display:block; padding:0 10px 8px 10px; color:#979797; background-color:#ECECEC; font-style:italic; line-height:normal;}
+q:before{content:'� '; font-size:26px;}
+q:after{content:' �'; font-size:26px; line-height:0;}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+
+div.wrapper{display:block; width:960px; margin:0 auto; padding:0; text-align:left;}
+
+.row1, .row1 a{color:#979797; background-color:#FFFFFF;}
+.row2{color:#979797; background-color:#FFFFFF;}
+.row2 a{color:#FF9900; background-color:#FFFFFF;}
+.row3{border-top:1px solid #DEDEDE;}
+.row3, .row3 a{color:#979797; background-color:#FFFFFF;}
+
+/*----------------------------------------------Generalise-------------------------------------*/
+
+#header, #container, #footer{display:block; width:960px;}
+
+nav ul{margin:0; padding:0; list-style:none;}
+
+h1, h2, h3, h4, h5, h6{margin:0; padding:0; font-size:16px; font-weight:bold; font-style:normal; line-height:normal; text-transform:uppercase;}
+
+address{font-style:normal;}
+
+blockquote, q{display:block; padding:8px 10px; color:#979797; background-color:#ECECEC; font-style:italic; line-height:normal;}
+blockquote:before, q:before{content:'� '; font-size:26px;}
+blockquote:after, q:after{content:' �'; font-size:26px; line-height:0;}
+
+.one_third, .two_third, .three_third{display:block; float:left; margin:0 30px 0 0;}
+.one_third{width:300px;}
+.two_third{width:630px;}
+.three_third{width:960px; float:none; margin-right:0; clear:both;}
+.lastbox{margin-right:0;}
+
+/*----------------------------------------------Header-------------------------------------*/
+
+#header{}
+
+#header #hgroup{padding:20px 0 0 0; float:left;}
+#header #hgroup h1, #header #hgroup h2{font-weight:normal; text-transform:none;}
+#header #hgroup h1{font-size:36px;}
+#header #hgroup h2{font-size:13px;}
+
+#header nav{display:block; float:right; margin:25px 0 0 0; padding:10px 10px; border-top:1px solid #DEDEDE; border-bottom:1px solid #DEDEDE;}
+#header nav ul{}
+#header nav li{display:inline; margin-right:25px; text-transform:uppercase;}
+#header nav li.last{margin-right:0;}
+#header nav li a{}
+#header nav li a:hover{color:#FF9900; }
+
+/*----------------------------------------------Content Area-------------------------------------*/
+
+#container{padding:30px 0;}
+#container section{display:block; width:100%; margin:0 0 30px 0; padding:0;}
+#container .last{margin:0;}
+#container .more{text-align:right; text-transform:uppercase; font-size:smaller; font-weight:bold;}
+
+/* ------Slider-----*/
+
+.slider{
+	width: 100%;
+	display:block;
+	margin-bottom:30px;
+}
+
+.slider a{
+	border: 1px solid black;
+	display:block;
+	padding: 9px;
+}
+
+.slider a:hover{
+	border-color: #FF9900;
+}
+
+.slider img{
+	vertical-align:middle;
+}
+
+
+/* ------Homepage-----*/
+
+#container #homepage{line-height:1.6em;}
+#container #homepage article{}
+#container #homepage article h2{font-size:14px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #DEDEDE;}
+#container #homepage article p{margin:0; padding:0;}
+#container #homepage article img{float:left; width:80px; height:80px; margin:0 10px 10px 0; padding:4px; border:1px solid #DEDEDE;}
+#container #homepage article footer{margin:10px 0 0 0;}
+
+/*----------------------------------------------Footer-------------------------------------*/
+
+.container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+/* ------our new css-----*/
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li.tab-link{
+	background-color: #ededed;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background-color: #ededed;
+  color: #222;
+  border: 1px solid #FF9900;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: -1px;
+}
+
+.tabs li.add-product{
+	background-color: #ededed;
+	float: right;
+	border: 3px solid #FF9900;
+	padding: 3px;
+	border-radius: 50%;
+	color: black;
+	font-size: 20px;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+  overflow: hidden;
+}
+
+.tab-content.current{
+	display: inherit;
+	background: #ededed;
+    padding: 15px;
+    border: 1px solid #FF9900;
+}
+.target.active{
+	color: #FF9900;
+    background-color: #ccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.product{
+	height: 150px;
+	width: 175px;
+	border: 1px solid;
+	margin-right: 10px;
+	float: left;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.product.last{
+	margin-right:0px;
+}
+.product img {
+    margin-top: 10px;
+		width: 80px;
+		height: 80px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+/* ------Form-----*/
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: black;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #FF9900;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #FF9900;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+
+#footer{padding:20px 0;}
+#footer p{margin:0; padding:0;}
+
+@media screen and (max-width: 768px) {
+    .one_third{
+        display:block;
+        float:none;
+        width: 100%;
+    }
+}
+
+/* ---------------- product -------------------- */
+
+#page article h2{
+    font-size:14px;
+    margin-bottom:15px;
+    padding-bottom:8px;
+    border-bottom:1px solid #DEDEDE;
+}
+
+#page article p{
+    width:100%;
+    padding:0;
+}
+
+#page article img{
+    float: right;
+    width:80px;
+    height:80px;
+    margin:0 0 10px 10px;
+    padding:4px;
+    border:1px solid #DEDEDE;
+}
+
+#page article footer{
+    margin:10px 0 0 0;
+}
+
+.button {
+    position: relative;
+    left: 64%;
+}
