@@ -50,6 +50,34 @@
 
     }
 
+    public function delete_action ($data) {
+
+      if (isset($_POST['delete'])) {
+
+        $model = $this->model->load_model('add_products');
+
+        $message = $model->delete_product($_POST['delete']);
+
+        echo $message;
+
+      }
+
+    }
+
+    public function edit_action ($data) {
+
+      if (isset($_POST['edit_name'])) {
+
+        $model = $this->model->load_model('add_products');
+
+        $message = $model->edit_product($_POST);
+
+        echo $message;
+
+      }
+
+    }
+
   }
 
 

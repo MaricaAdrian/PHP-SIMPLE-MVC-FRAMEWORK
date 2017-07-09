@@ -46,6 +46,47 @@
 
       }
 
+      public function delete_product ($delete) {
+
+        if (isset($_POST['delete'])) {
+
+          $delete = self::escape_sql($delete);
+
+          $sql = "DELETE FROM `products` WHERE `name` = '". $delete ."'";
+
+          $result = self::execute_public($sql);
+
+          if($result)
+            return 1;
+          else
+            return 0;
+
+        }
+
+      }
+
+      public function edit_product ($edit) {
+
+        if (isset($_POST['edit_name'])) {
+
+          $name = self::escape_sql($edit['edit_name']);
+          $quantity = self::escape_sql($edit['edit_quantity']);
+          $quantity_attr = self::escape_sql($edit['edit_type']);
+          $unmodified_name = self::escape_sql($edit['unmodified_name']);
+
+          $sql = "UPDATE `products` SET `name` = '". $name ."', `quantity` = '". $quantity ."', `quantity_type` = '". $quantity_attr ."' WHERE `name` = '". $unmodified_name ."' ";
+
+          $result = self::execute_public($sql);
+
+          if($result)
+            return 1;
+          else
+            return 0;
+
+        }
+
+      }
+
     }
 
 ?>

@@ -123,12 +123,32 @@ $(document).ready(function(){
 
 	$(document).on('click', 'span[id^="delete_"]', function(){
 
+
+		var product_name;
 		var id = $(this).attr('id');
 
 		id = id.replace("delete_", "");
 		id = parseInt(id);
 
-		delete_product(id);
+		product_name = $("ul#productList li[id='"+id+"'] span:first-of-type").html();
+
+
+
+		ajax_error = $.ajax({
+			method: "POST",
+			url: "/add_products/delete",
+			data: { delete: product_name },
+			global: false,
+			async: false,
+			success: function (data) {
+				return data;
+				}
+		}).responseText;
+
+		if (ajax_error !== 0)
+			delete_product(id);
+		else
+			status_add();
 
 		number_of_products();
 
@@ -154,15 +174,17 @@ $(document).ready(function(){
 		product_quantity = $("ul#productList li[id='"+id+"'] span:nth-of-type(2)").html();
 		product_quantity_attr = $("ul#productList li[id='"+id+"'] span:nth-of-type(3)").html();
 
+		console.log(product_name);
+
 		under_edit.push(product_name); //Semnalez elementul curent ca fiind supus unei editari.
-		under_edit.push(product_quantity); //Salvez informatiile in caz ca nu se doreste anularea editarii.
+		under_edit.push(product_quantity); //Salvez informatiile in caz ca se doreste anularea editarii.
 		under_edit.push(product_quantity_attr); //Salvez informatiile in caz ca se doreste anularea editarii.
 		under_edit.push(id); //Salvez informatiile in caz ca se doreste anularea editarii.
 
 
 
 		$("ul#productList li[id='"+id+"']").empty();
-		$("ul#productList li[id='"+id+"']").append("Name: <input class=\"form-control\" type=\"text\" id=\"editName_"+product_name+"\" value="+product_name+"> <br\> Quantity: <input class=\"form-control\" type=\"text\" id=\"editQuantity_"+product_quantity+"\" value=\""+product_quantity+"\"> "+select_atr+" <div class=\"row\"><span class=\"glyphicon glyphicon-ok\" id=\"editAccept_"+id+"\">Save</span><span id=\"editDeny_"+id+"\" class=\"glyphicon glyphicon-remove\">Cancel</span></div>");
+		$("ul#productList li[id='"+id+"']").append("Name: <input class=\"form-control\" type=\"text\" id=\"editName_"+product_name+"\" value=\""+product_name+"\">"+product_name+" <br\> Quantity: <input class=\"form-control\" type=\"text\" id=\"editQuantity_"+product_quantity+"\" value=\""+product_quantity+"\"> "+select_atr+" <div class=\"row\"><span class=\"glyphicon glyphicon-ok\" id=\"editAccept_"+id+"\">Save</span><span id=\"editDeny_"+id+"\" class=\"glyphicon glyphicon-remove\">Cancel</span></div>");
 
 
 
@@ -211,14 +233,31 @@ $(document).ready(function(){
 		}
 
 		index = under_edit.indexOf(id);
-		console.log(index);
 
-		$("ul#productList li[id='"+id+"']").empty();
-		$("ul#productList li[id='"+id+"']").append(" Name: <span id=\"product_"+product_name+"\">"+product_name+"</span> <br\> Quantity: <span>"+product_quantity+"</span> <span>"+product_quantity_attr+"</span> <div class=\"row\"><span class=\"glyphicon glyphicon-edit\" id=\"edit_"+id+"\">Edit</span><span id=\"delete_"+id+"\" class=\"glyphicon glyphicon-trash\">Delete</span></div>");
+		ajax_error = $.ajax({
+			method: "POST",
+			url: "/add_products/edit",
+			data: { edit_name: product_name, edit_quantity: product_quantity, edit_type: product_quantity_attr, unmodified_name: under_edit[index - 3] },
+			global: false,
+			async: false,
+			success: function (data) {
+				alert(data);
+				return data;
+				}
+		}).responseText;
 
-		under_edit.splice(index - 3, 4);
+		if (ajax_error !== 0) {
 
-		status_add(6);
+			$("ul#productList li[id='"+id+"']").empty();
+			$("ul#productList li[id='"+id+"']").append(" Name: <span id=\"product_"+product_name+"\">"+product_name+"</span> <br\> Quantity: <span>"+product_quantity+"</span> <span>"+product_quantity_attr+"</span> <div class=\"row\"><span class=\"glyphicon glyphicon-edit\" id=\"edit_"+id+"\">Edit</span><span id=\"delete_"+id+"\" class=\"glyphicon glyphicon-trash\">Delete</span></div>");
+
+			under_edit.splice(index - 3, 4);
+
+			status_add(6);
+
+		} else {
+			status_add(9);
+		}
 
 	});
 
@@ -319,6 +358,14 @@ function status_add(status_number){
 			break;
 		case 7:
 			text = "You've canceled product editing.";
+			label = "danger";
+			break;
+		case 8:
+			text = "Wanted product couldn't be deleted. It may have been already deleted or given product name does not exist";
+			label = "danger";
+			break;
+		case 9:
+			text = "Product could not be edited. It may have been already edited or given product name does not exist";
 			label = "danger";
 			break;
 		default:
