@@ -28,13 +28,13 @@
   				<div class="panel-body">
   					<form class="form-horizontal">
   						<div class="form-group">
-  							<label class="control-label col-sm-2" for="productName">Denumire produs:</label>
+  							<label class="control-label col-sm-2" for="productName">Product name:</label>
   							<div class="col-sm-4">
   							<input type="text" class="form-control" id="productName">
   							</div>
   					    </div>
   					    <div class="form-group">
-  							<label class="control-label col-sm-2" for="productQuantity">Cantitate:</label>
+  							<label class="control-label col-sm-2" for="productQuantity">Quantity:</label>
   							<div class="col-sm-2">
   							<input type="text" class="form-control" id ="productQuantity">
   							</div>
@@ -49,7 +49,7 @@
   					    </div>
   					  <div class="col-sm-offset-2 col-sm-10">
   						  <button type="button" class="btn btn-default btn-lg" id="productSubmit">
-  							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adaugă
+  							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
   						  </button>
   					  </div>
   					</form>

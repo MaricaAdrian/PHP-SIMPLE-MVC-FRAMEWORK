@@ -25,15 +25,24 @@
   				<span class="icon-bar"></span>
   				<span class="icon-bar"></span>
   			  </button>
-  			  <a class="navbar-brand" href="#">Gestionare produse</a>
+  			  <a class="navbar-brand" href="#">Product management</a>
   			</div>
   			<div id="navbar" class="navbar-collapse collapse">
   			  <ul class="nav navbar-nav">
   				<li class="active"><a href="#top">Top</a></li>
+          <li><a href="<?php echo BASE_URL . "home" ?>">Home</a></li>
+          <?php if (!isset($_SESSION['user_id'])) { ?>
+                  <li><a href="<?php echo BASE_URL . "login" ?>">Login</a></li>
+          <?php } ?>
+          <li><a href="<?php echo BASE_URL . "products"?>">Products</a></li>
+          <?php if (isset($_SESSION['user_id'])) { ?>
+                  <li><a href="<?php echo BASE_URL . "add_products" ?>">Add products</a></li>
+                  <li class="last"><a href="<?php echo BASE_URL . "logout" ?>">Logout</a></li>
+          <?php } ?>
   			  </ul>
   			  <ul id="navbarUL" class="nav navbar-nav navbar-right">
-  				<li><a href="#productClass">Vizualizare produse</a></li>
-  				<li><a href="#productAdd">Adaugare produse</a></li>
+  				<li><a href="#productClass">View products</a></li>
+  				<li><a href="#productAdd">Add products</a></li>
   			  </ul>
   			</div>
   		</div>

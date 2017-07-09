@@ -5,9 +5,17 @@
 
     public function index_action ($data) {
 
-      $data['title'] = "Add products";
+      if (isset($_SESSION['user_id'])) {
 
-      $this->view->generate_view("view_add_products.php", "template_add_products.php", $data);
+        $data['title'] = "Add products";
+
+        $this->view->generate_view("view_add_products.php", "template_add_products.php", $data);
+
+      } else {
+
+          Web::relocate('login');
+
+      }
 
     }
 
