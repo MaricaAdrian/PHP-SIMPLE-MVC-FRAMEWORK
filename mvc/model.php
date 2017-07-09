@@ -252,7 +252,7 @@
    */
 
   public function check_if_exists($key, $value, $table) {
-      $sql = "SELECT * FROM " . $table . " WHERE '" . self::escape($key) . "' = '" . self::escape($value) . "'";
+      $sql = "SELECT * FROM `" . $table . "` WHERE `" . self::escape_sql($key) . "` = '" . self::escape_sql($value) . "'";
       $result = self::execute($sql);
       $data = $result->fetch_assoc();
       if ($data) {

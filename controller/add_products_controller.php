@@ -1,5 +1,8 @@
 <?php
 
+  /**
+  * Class add_products_controller extends our primary Controller for adding products
+  */
 
   Class add_products_controller extends Controller {
 
@@ -14,6 +17,34 @@
       } else {
 
           Web::relocate('login');
+
+      }
+
+    }
+
+    public function populate_action ($data) {
+
+      if (isset($_POST['initialize'])) {
+
+        $model = $this->model->load_model('add_products');
+
+        $message = $model->get_all();
+
+        echo json_encode($message);
+
+      }
+
+    }
+
+    public function add_action ($data) {
+
+      if (isset($_POST['name'])) {
+
+        $model = $this->model->load_model('add_products');
+
+        $message = $model->add_product($data);
+
+        echo $message;
 
       }
 

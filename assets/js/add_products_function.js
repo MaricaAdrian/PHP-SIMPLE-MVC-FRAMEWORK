@@ -2,12 +2,31 @@ var next_value;
 var timer_update;
 var under_edit = new Array();
 var under_edit_info = new Array();
+var ajax_error;
 
 $(document).ready(function(){
 
+
+	$.ajax({
+  method: "POST",
+  url: "/add_products/populate",
+  data: { initialize: "1"}
+	})
+  .done(function( msg ) {
+		var jsonData = JSON.parse(msg);
+		for (var i = 0; i < jsonData.length; i++) {
+	    var id = jsonData[i].id;
+			var name = jsonData[i].name;
+			var quantity = jsonData[i].quantity;
+			var quantity_type = jsonData[i].quantity_type;
+			add_product(name, quantity, quantity_type, 1);
+		}
+  });
+
+
 	var init = number_of_products(); // Initializam numarul de produse
 
-
+  /*
 	var aChildren = $("#navbar li").children();
 	var aArray = [];
 	for (var i=0; i < aChildren.length; i++) {
@@ -32,7 +51,7 @@ $(document).ready(function(){
 				$("a[href='" + theID + "']").parent('li').removeClass("active");
 			}
 		}
-	});
+	}); */
 
 
 	$("#productSubmit").click(function(){
@@ -64,8 +83,7 @@ $(document).ready(function(){
 		});
 		for(iterator = 0; iterator < under_edit.length; iterator += 4){ //Verific daca produsul pe care vreau sa il introduc exista si este supus editarii
 
-			if(under_edit[iterator] === product_name){
-				console.log("aici");
+			if (under_edit[iterator] === product_name) {
 				status_add(1)
 				ok = 0;
 				return;
@@ -75,21 +93,32 @@ $(document).ready(function(){
 		}
 		if(!ok)
 			return;
-		if(!$.isNumeric(product_quantity)){ //Verific daca in campul Cantitate sunt trecute doar numere
+		if (!$.isNumeric(product_quantity)){ //Verific daca in campul Cantitate sunt trecute doar numere
 			status_add(2);
 			return;
 		}
-		if($("#input#product").val() === ""){ //Verific daca campul Cantitate este gol
+		if ($("#input#product").val() === ""){ //Verific daca campul Cantitate este gol
 			status_add(3);
 			return;
 		}
 
 
 
+		ajax_error = $.ajax({
+			method: "POST",
+			url: "/add_products/add",
+			data: { name: product_name, quantity: product_quantity, type: product_quantity_attr },
+			global: false,
+			async: false,
+			success: function (data) {
+				return data;
+				}
+			}).responseText;
 
-		add_product(product_name, product_quantity, product_quantity_attr); // Adaug produsul
-
-
+		if (parseInt(ajax_error) != 0)
+			add_product(product_name, product_quantity, product_quantity_attr); // Adaug produsul
+		else
+      status_add(1);
 	});
 
 	$(document).on('click', 'span[id^="delete_"]', function(){
@@ -233,8 +262,7 @@ function delete_product(id){
 
 }
 
-function add_product(name, quantity, quantity_attr){
-
+function add_product(name, quantity, quantity_attr, start){
 
 
 	next_value = $("ul#productList li").last().attr('id'); // Aflu urmatoarul id al produsului
@@ -249,8 +277,8 @@ function add_product(name, quantity, quantity_attr){
 	//Adaug produsul in lista, id item = next_value, id denumire = product_+name+
 	$("ul#productList").append("<li class=\"list-group-item col-sm-6\" id=\""+next_value+"\"> Name: <span id=\"product_"+name+"\">"+name+"</span> <br\> Quantity: <span>"+quantity+"</span> <span>"+quantity_attr+"</span> <div class=\"row\"><span class=\"glyphicon glyphicon-edit\" id=\"edit_"+next_value+"\">Edit</span><span id=\"delete_"+next_value+"\" class=\"glyphicon glyphicon-trash\">Delete</span></div></li>");
 
-
-	status_add(4);
+	if(typeof start === 'undefined')
+		status_add(4);
 	status_text(next_value);
 
 }
