@@ -1,16 +1,31 @@
 <?php
 
+/**
+
+* @file controller.php
+
+* @brief Main controller file of our web application.
+
+*
+
+* @author  © Marica Adrian-Gabriel
+
+*
+
+* @date 10/07/2017
+
+*/
+
+
   /**
    * Our primary Controller class
    */
   Class Controller {
-      /** @var Model initialize our model class */
+
       public $model;
 
-      /** @var View initialize our view class */
       public $view;
 
-      /** @var array data we want to display on page*/
       public $data = array();
 
       /**

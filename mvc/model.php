@@ -1,5 +1,24 @@
 <?php
 
+/**
+
+* @file model.php
+
+* @brief Main model file of our web application.
+
+*
+
+* @author  © Marica Adrian-Gabriel
+
+*
+
+* @date 10/07/2017
+
+*/
+
+
+<?php
+
   /**
   *
   * Primary model class for our application
@@ -33,7 +52,7 @@
     }
 
     /**
-    * @function load Load function of our model
+    * function load_model Load function of our model
     *
     * @param $model The model to load
     *
@@ -60,7 +79,7 @@
 
     /**
     *
-    * @function escape_sql Function that escapes the given striing
+    * function escape_sql Function that escapes the given string
     *
     * @param $string our string that has to be escaped
     *
@@ -75,11 +94,9 @@
 
     /**
     *
-    * @function inserted_id Function that escapes the given striing
+    * function inserted_id Function that returns the last id inserted by a query.
     *
-    * @param $string our string that has to be escaped
-    *
-    * @return False if insertion failed otherwise it returns the id of the inserted element
+    * @return The last id inserted or false.
     */
 
     public function inserted_id() {
@@ -91,7 +108,7 @@
 
 
     /**
-    * @function execute Executs the given sql command
+    * function execute Executs the given sql command
     *
     * @param $sql Sql that needs to be executed
     *
@@ -107,7 +124,7 @@
    }
 
    /**
-   * @function execute Executs the given sql command
+   * function execute Executs the given sql command
    *
    * @param $sql Sql that needs to be executed
    *
@@ -122,7 +139,7 @@
 
     /**
     *
-    * @function get_array() Function that tries to give us an array from the database
+    * function get_array() Function that tries to give us an array from the database
     *
     * @param $table Table from where we want to get the array from
     *
@@ -187,7 +204,7 @@
 
 
     /**
-     * @function get_by_id Returns data about our given id
+     * function get_by_id Returns data about our given id
      *
      * @param $id The id we want to get from
      *
@@ -209,7 +226,7 @@
 
 
   /**
-   * @function custom_sql Executes the given SQL command
+   * function custom_sql Executes the given SQL command
    *
    * @param $sql The sql command we want to be executed
    *
@@ -240,7 +257,7 @@
 
 
    /**
-   * @function check_if_exists Function that checks if key is equal to the value in the given table
+   * function check_if_exists Function that checks if key is equal to the value in the given table
    *
    * @param $key Key that we want to check if exists
    *
@@ -265,7 +282,7 @@
 
 
   /**
-     * @function Deletes the given id from the given table
+     * function Deletes the given id from the given table
      *
      * @param $id Id that we want to be deleted
      *
