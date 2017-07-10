@@ -148,7 +148,7 @@ $(document).ready(function(){
 		if (ajax_error !== 0)
 			delete_product(id);
 		else
-			status_add();
+			status_add(8);
 
 		number_of_products();
 
@@ -162,7 +162,15 @@ $(document).ready(function(){
 		var product_quantity;
 		var product_quantity_attr;
 		var id = $(this).attr('id');
-		var select_atr = "<select class=\"form-control\" id=\"editQuantityAtr_"+id+"\"><option>Bucăți</option><option>Kilograme</option><option>Grame</option><option>Bax-uri</option></select>";
+		var select_atr = "<select class=\"form-control\" id=\"editQuantityAtr_"+id+"\">";
+
+		$("#productQuantityAttr option").each(function(){
+
+			select_atr += "<option>"+ $(this).val() + "</option>";
+
+		});
+
+		select_atr += "</select>";
 
 		id = id.replace("edit_", "");
 		id = parseInt(id);
@@ -184,7 +192,7 @@ $(document).ready(function(){
 
 
 		$("ul#productList li[id='"+id+"']").empty();
-		$("ul#productList li[id='"+id+"']").append("Name: <input class=\"form-control\" type=\"text\" id=\"editName_"+product_name+"\" value=\""+product_name+"\">"+product_name+" <br\> Quantity: <input class=\"form-control\" type=\"text\" id=\"editQuantity_"+product_quantity+"\" value=\""+product_quantity+"\"> "+select_atr+" <div class=\"row\"><span class=\"glyphicon glyphicon-ok\" id=\"editAccept_"+id+"\">Save</span><span id=\"editDeny_"+id+"\" class=\"glyphicon glyphicon-remove\">Cancel</span></div>");
+		$("ul#productList li[id='"+id+"']").append("Name: <input class=\"form-control\" type=\"text\" id=\"editName_"+product_name+"\" value=\""+product_name+"\"> <br\> Quantity: <input class=\"form-control\" type=\"text\" id=\"editQuantity_"+product_quantity+"\" value=\""+product_quantity+"\"> "+select_atr+" <div class=\"row\"><span class=\"glyphicon glyphicon-ok\" id=\"editAccept_"+id+"\">Save</span><span id=\"editDeny_"+id+"\" class=\"glyphicon glyphicon-remove\">Cancel</span></div>");
 
 
 
@@ -241,7 +249,6 @@ $(document).ready(function(){
 			global: false,
 			async: false,
 			success: function (data) {
-				alert(data);
 				return data;
 				}
 		}).responseText;

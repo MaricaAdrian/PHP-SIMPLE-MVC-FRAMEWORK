@@ -40,10 +40,11 @@
   							</div>
   							<div class="col-sm-2">
   							<select class="form-control" id="productQuantityAttr">
-  								<option>Pieces</option>
-  								<option>Kilo</option>
-  								<option>Grams</option>
-  								<option>Dozen</option>
+  								<?php
+                    for ($cnt = 0; $cnt < count($data) - 1; $cnt++) {
+                      echo "<option>".$data[$cnt]['name']."</option>";
+                    }
+                  ?>
   							</select>
   							</div>
   					    </div>
@@ -62,3 +63,5 @@
   	  </div>
 
   </div>
+
+<script src="/assets/js/add_products_function.js"></script>

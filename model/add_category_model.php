@@ -1,41 +1,34 @@
 <?php
 
   /**
-    * Extended Class add_products_model of our primary class Model
-    * Used for managing products
+    * Extended Class add_category_model of our primary class Model
+    * Used for managing categories
     */
 
-    Class add_products_model extends Model{
+    Class add_category_model extends Model{
 
-      public function populate_category () {
+
+      public function get_all () {
 
         return self::get_array("`category`");
 
       }
 
-      public function get_all () {
-
-        return self::get_array("`products`");
-
-      }
-
-      public function add_product ($data) {
+      public function add_category ($data) {
 
         if (isset($_POST['name'])) {
 
           $name = $_POST['name'];
-          $result = self::check_if_exists("name", $name, "products");
+          $result = self::check_if_exists("name", $name, "category");
 
           if($result) {
             return 0;
           } else {
 
             $name = self::escape_sql($name);
-            $quantity = self::escape_sql($_POST['quantity']);
-            $type = self::escape_sql($_POST['type']);
 
-            $sql = "INSERT INTO `products`(`name`,`quantity`,`quantity_type`) VALUES
-                                          ('" . $name . "', '" . $quantity . "', '". $type ."')";
+            $sql = "INSERT INTO `category`(`name`) VALUES
+                                          ('" . $name . "')";
 
             self::execute_public($sql);
 
@@ -57,7 +50,7 @@
 
           $delete = self::escape_sql($delete);
 
-          $sql = "DELETE FROM `products` WHERE `name` = '". $delete ."'";
+          $sql = "DELETE FROM `category` WHERE `name` = '". $delete ."'";
 
           $result = self::execute_public($sql);
 
@@ -75,11 +68,9 @@
         if (isset($_POST['edit_name'])) {
 
           $name = self::escape_sql($edit['edit_name']);
-          $quantity = self::escape_sql($edit['edit_quantity']);
-          $quantity_attr = self::escape_sql($edit['edit_type']);
           $unmodified_name = self::escape_sql($edit['unmodified_name']);
 
-          $sql = "UPDATE `products` SET `name` = '". $name ."', `quantity` = '". $quantity ."', `quantity_type` = '". $quantity_attr ."' WHERE `name` = '". $unmodified_name ."' ";
+          $sql = "UPDATE `category` SET `name` = '". $name ."' WHERE `name` = '". $unmodified_name ."' ";
 
           $result = self::execute_public($sql);
 

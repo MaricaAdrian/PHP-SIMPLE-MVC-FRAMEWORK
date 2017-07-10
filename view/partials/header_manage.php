@@ -37,6 +37,7 @@
           <li><a href="<?php echo BASE_URL . "products"?>">Products</a></li>
           <?php if (isset($_SESSION['user_id'])) { ?>
                   <li><a href="<?php echo BASE_URL . "add_products" ?>">Add products</a></li>
+                  <li><a href="<?php echo BASE_URL . "add_category" ?>">Add category</a></li>
                   <li class="last"><a href="<?php echo BASE_URL . "logout" ?>">Logout</a></li>
           <?php } ?>
   			  </ul>
