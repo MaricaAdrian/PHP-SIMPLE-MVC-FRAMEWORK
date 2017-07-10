@@ -17,8 +17,6 @@
 */
 
 
-<?php
-
   /**
   *
   * Primary model class for our application
