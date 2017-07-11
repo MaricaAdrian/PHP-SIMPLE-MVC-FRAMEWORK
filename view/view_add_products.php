@@ -28,12 +28,25 @@
   				<div class="panel-body">
   					<form class="form-horizontal">
   						<div class="form-group">
-  							<label class="control-label col-sm-2" for="productName">Product name:</label>
-  							<div class="col-sm-4">
-  							<input type="text" class="form-control" id="productName">
-  							</div>
-  					    </div>
-  					    <div class="form-group">
+                <div class="row">
+    							<label class="control-label col-sm-2" for="productName">Product name:</label>
+    							<div class="col-sm-4">
+    							  <input type="text" class="form-control" id="productName">
+    							</div>
+                </div>
+                <div class="row">
+                <label class="control-label col-sm-2" for="productImage">Product image:</label>
+    							<div class="col-sm-4">
+                    <label class="btn btn-primary" style="margin-top: 5px;" for="productImage">
+                      <input id="productImage" name="productImage" type="file" style="display:none"
+                      onchange="$('#upload-file-info').html(this.files[0].name)">
+                      Upload
+                    </label>
+                    <span class='label label-info' id="upload-file-info"></span>
+    							</div>
+                </div>
+  					  </div>
+  					  <div class="form-group">
   							<label class="control-label col-sm-2" for="productQuantity">Quantity:</label>
   							<div class="col-sm-2">
   							<input type="text" class="form-control" id ="productQuantity">
@@ -47,7 +60,7 @@
                   ?>
   							</select>
   							</div>
-  					    </div>
+  					  </div>
   					  <div class="col-sm-offset-2 col-sm-10">
   						  <button type="button" class="btn btn-default btn-lg" id="productSubmit">
   							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
