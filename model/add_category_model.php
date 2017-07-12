@@ -36,15 +36,19 @@
 
             if ($id == 0)
               return 0;
-            else
+            else {
+              $name = str_replace(" ", "_", $_POST['name']);
+              mkdir('images/uploads/' . $name, 0777, true);
               return $id;
+            }
+
           }
 
         }
 
       }
 
-      public function delete_product ($delete) {
+      public function delete_category ($delete) {
 
         if (isset($_POST['delete'])) {
 
@@ -54,29 +58,46 @@
 
           $result = self::execute_public($sql);
 
-          if($result)
+          if($result) {
+
+            $delete = str_replace(" ", "_", $_POST['delete']);
+            self::delete_dir('images/uploads/' . $delete);
+
             return 1;
-          else
+
+          } else
             return 0;
 
         }
 
       }
 
-      public function edit_product ($edit) {
+      public function edit_category ($edit) {
 
         if (isset($_POST['edit_name'])) {
 
           $name = self::escape_sql($edit['edit_name']);
           $unmodified_name = self::escape_sql($edit['unmodified_name']);
 
+          $sql = "UPDATE `products` SET `quantity_type` = '" . $name . "' WHERE `quantity_type` = '". $unmodified_name ."'";
+
+          $result = self::execute_public($sql);
+
+          if(!$result)
+            return 0;
+
           $sql = "UPDATE `category` SET `name` = '". $name ."' WHERE `name` = '". $unmodified_name ."' ";
 
           $result = self::execute_public($sql);
 
-          if($result)
+          if($result) {
+
+            $unmodified_name = str_replace(" ", "_", $edit['unmodified_name']);
+            $name = str_replace(" ", "_", $edit['edit_name']);
+            rename("images/uploads/". $unmodified_name, "images/uploads/". $name);
             return 1;
-          else
+
+          } else
             return 0;
 
         }

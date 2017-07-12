@@ -11,6 +11,10 @@
   define("UPLOAD_URL", BASE_URL . "uploads");
   define("MODE", 'devON');
 
+
+  ini_set('display_errors', 1);
+  error_reporting(E_ALL);
+
   session_start();
 
 ?>

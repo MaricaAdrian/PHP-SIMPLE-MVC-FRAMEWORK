@@ -61,7 +61,7 @@
 
         $model = $this->model->load_model('add_category');
 
-        $message = $model->delete_product($_POST['delete']);
+        $message = $model->delete_category($_POST['delete']);
 
         echo $message;
 
@@ -78,7 +78,7 @@
 
         $model = $this->model->load_model('add_category');
 
-        $message = $model->edit_product($_POST);
+        $message = $model->edit_category($_POST);
 
         echo $message;
 

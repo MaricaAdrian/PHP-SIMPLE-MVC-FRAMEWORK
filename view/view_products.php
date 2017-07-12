@@ -21,7 +21,7 @@
       for ($prod = 0; $prod < count($products); $prod++) {
         if ( strcmp($products[$prod]['quantity_type'], $categories[0]['name']) == 0 ) { ?>
           <div class="product">
-                <img src="/images/demo/80x80.gif" alt="">
+                <img src="/images/uploads/<?php echo str_replace(" ", "_", $products[$prod]['quantity_type']); ?>/<?php echo $products[$prod]['image']; ?>" alt="">
                 <div style="clear:both;"></div>
                 <span> <?php echo $products[$prod]['name']; ?></span>
             </div>
@@ -33,7 +33,7 @@
         for ($prods = 0; $prods < count($products); $prods++) {
           if ( strcmp($products[$prods]['quantity_type'], $categories[$cat]['name']) == 0 ) { ?>
             <div class="product">
-                  <img src="/images/demo/80x80.gif" alt="">
+                  <img src="/images/uploads/<?php echo str_replace(" ", "_", $products[$prods]['quantity_type']); ?>/<?php echo $products[$prods]['image']; ?>"  alt="">
                   <div style="clear:both;"></div>
                   <span> <?php echo $products[$prods]['name']; ?></span>
               </div>

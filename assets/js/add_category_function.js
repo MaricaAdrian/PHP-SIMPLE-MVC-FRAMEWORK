@@ -185,6 +185,7 @@ $(document).ready(function(){
 				}
 		}).responseText;
 
+
 		if (ajax_error !== 0) {
 
 			$("ul#category_list li[id='"+id+"']").empty();
