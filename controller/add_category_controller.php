@@ -6,10 +6,14 @@
 
   Class add_category_controller extends Controller {
 
-    public function index_action ($data) {
-
+    public function __construct () {
+      parent::__construct();
       if (!isset($_SESSION['user_id']))
         Web::relocate('login');
+    }
+
+
+    public function index_action ($data) {
 
       $data['title'] = "Manage categories";
 
@@ -19,9 +23,6 @@
     }
 
     public function populate_action ($data) {
-
-      if (!isset($_SESSION['user_id']))
-        Web::relocate('login');
 
       if (isset($_POST['initialize'])) {
 
@@ -37,9 +38,6 @@
 
     public function add_action ($data) {
 
-      if (!isset($_SESSION['user_id']))
-        Web::relocate('login');
-
       if (isset($_POST['name'])) {
 
         $model = $this->model->load_model('add_category');
@@ -54,9 +52,6 @@
 
     public function delete_action ($data) {
 
-      if (!isset($_SESSION['user_id']))
-        Web::relocate('login');
-
       if (isset($_POST['delete'])) {
 
         $model = $this->model->load_model('add_category');
@@ -70,9 +65,6 @@
     }
 
     public function edit_action ($data) {
-
-      if (!isset($_SESSION['user_id']))
-        Web::relocate('login');
 
       if (isset($_POST['edit_name'])) {
 

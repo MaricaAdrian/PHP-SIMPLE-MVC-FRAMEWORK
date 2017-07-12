@@ -180,7 +180,7 @@
       public function edit_image ($edit) {
 
         if ( 0 < $_FILES['file']['error'] ) {
-          return "Something went wrong at image uploading.";
+          return 0;
         } else {
 
           $name = $edit[1] . "_" . $edit[0] . "_" . str_replace(" ", "_", $_FILES['file']['name']);
@@ -199,7 +199,6 @@
               unlink("images/uploads/" . $edit[3] . "/" . $old_image);
           }
 
-
           if (move_uploaded_file($_FILES['file']['tmp_name'], "$uploads_dir/$name")) {
 
             $name = self::escape_sql($name);
@@ -215,9 +214,9 @@
 
           }
 
-      }
+        }
 
-    }
+      }
 
     }
 
