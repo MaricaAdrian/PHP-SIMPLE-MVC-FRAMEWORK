@@ -1,5 +1,3 @@
-# Marica Adrian MVC
-
 ## Changes
 
 - Switched to C style declarations of variables, functions
